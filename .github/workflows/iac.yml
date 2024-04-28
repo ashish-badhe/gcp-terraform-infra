@@ -1,0 +1,26 @@
+name: Iac Workflow
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Terraform Check 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to our code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Print
+        run: echo "Hello World"
